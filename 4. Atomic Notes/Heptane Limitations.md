@@ -12,7 +12,6 @@
 	- example is `trap_entry` etc. which just jump to other parts of code before execution eventually hits `sret` for example. 
 	- could potentially be addressed by combining such CFGs - not sure if the provided library can handle this easily.
 	- WCET analysis seems to skip over CFGs that don't have an "end node" (BB with return) so this does become an issue.
-- RISC-V pipeline analysis calls straight into MIPS pipeline analysis... need to investigate this. 
 - Assumes 32-bit instruction length, causing issues with BB identification and control flow analysis because seL4 builds with the C-extension by default.
     - Mitigated by compiling without the extension, resulting in a larger binary but solving spurious loop problem.
 - Assumes functions don't modify the stack pointer (except initial stack frame allocation), which is problematic from a kernel perspective.
@@ -20,3 +19,9 @@
 - Doesn't consider CSR instructions and registers. Manually added but needs further investigation.
 - Data Cache Analysis: Requires simulation step associating memory addresses to load/store instructions. Heptane currently only caters for stack-relative addresses and loads from global pointer relative addresses. Many other register operations not implemented (with a smattering of "NYI" and "TODO" comments through the codebase).
     - Overall, currently incomplete, effectively unusable for data cache analysis.
+- Data cache analysis is ignored in Pipeline analysis, confirmed by a log message present in the codebase.
+- Pipeline analysis is hardcoded at 4 stages (Fetch, Decode, Execute, Write Back). Flexibility for other designs would be useful.
+    - "Memory access" stage of the "Classic RISC pipeline" is not implemented, flagged with `TODO`. This might be where a DCache miss would be accounted for with a pipeline stall.
+- DCache analysis can be considered without Pipeline analysis, but I assume both required for our purposes.
+- No support for superscalar or out-of-order execution.
+- No SMP support.

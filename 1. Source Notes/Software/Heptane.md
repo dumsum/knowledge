@@ -1,6 +1,6 @@
 [Link](https://team.inria.fr/pacap/software/heptane/)
 ## HeptaneExtract
-- `ConfigExtract.cc`: parse configuration XML, outputs [[readelf]] and [[objdump]] regardless of input method (C, ASM, BINARY). Pass output info to `BuildCfg` in `HeptaneExtract.cc`.
+- `ConfigExtract.cc`: parse configuration XML, outputs `readelf` and `objdump` regardless of input method (C, ASM, BINARY). Pass output info to `BuildCfg` in `HeptaneExtract.cc`.
 - `HeptaneExtract.cc`: 
 	- get sections from readelf
 	- basically text parsing
@@ -19,3 +19,7 @@ public:
 ``` 
 
 ## HeptaneAnalysis
+
+### ICache
+ALWAYS_HIT, ALWAYS_MISS, FIRST_MISS, Not_Classified, Always_Unused
+### Pipeline
