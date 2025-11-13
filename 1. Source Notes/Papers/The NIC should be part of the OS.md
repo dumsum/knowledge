@@ -1,0 +1,2 @@
+[Paper](https://dl.acm.org/doi/pdf/10.1145/3713082.3730388)
+Pengcheng Xu and Timothy Roscoe. 2025. The NIC should be part of the OS.. In Workshop on Hot Topics in Operating Systems (HOTOS ’25), May 14–16, 2025, Banff, AB, Canada. ACM, New York, NY, USA,
